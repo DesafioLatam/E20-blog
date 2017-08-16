@@ -1,32 +1,31 @@
-<%= form_with(model: post, local: true) do |form| %>
+<%= form_with(model: post, local: true, html: { class: 'form-horizontal' }) do |f| %>
   <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
+  <div id="error_explanation">
+    <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <ul>
       <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :post_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content, id: :post_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :post_user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :title, 'Título', class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4">
+        <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Título del post' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4">
+        <%= f.text_area :content, class: 'form-control', placeholder: 'Contenido del post' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= f.submit 'Crear Post', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </fieldset>
 <% end %>
