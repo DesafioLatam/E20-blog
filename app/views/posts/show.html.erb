@@ -1,19 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="text-center">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+	<legend><h1><%= @post.title %></h1></legend>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+	<p><strong>Publicado por:</strong> <%= @post.user.name %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user.name %>
-</p>
+	<div class="jumbotron">
+		<p>
+	  <%= @post.content %>
+	</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<div class="well well-sm">
+			<legend>Comentar:</legend>
+			<%= form_with(model: [@post, Comment.new], local: true, html: { class: 'form-horizontal' }) do |f| %>
+				<div class="form-group">
+					<div class="col-md-12">
+						<%= f.text_area :content, placeholder: 'Escribe tu comentario aquí...', class: 'form-control' %>
+					</div>
+				</div>
+				<%= f.submit 'Comentar', class: 'btn btn-primary' %>
+			<% end %>
+			  
+		</div>
+	</div>
+	<div class="col-md-8">
+		<% counter = 0 %>
+		<% @comments.each do |comment| %>
+			#<%= counter += 1 %>
+			<div class="well well-sm">
+				<strong><%= comment.user.name %>:</strong>
+				<br>
+				<%= comment.content %>
+				<div class="text-right">
+					<%= link_to 'Eliminar', post_comment_path(@post,comment), method: :delete, data: { confirm: 'Estás seguro que deseas eliminar el Comentario?' }, class: 'btn btn-xs btn-danger' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%#= link_to 'Editar', edit_post_path(@post) %>
+<%#= link_to 'Volver', posts_path, class: 'btn btn-default' %>
