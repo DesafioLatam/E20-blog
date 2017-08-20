@@ -1,24 +1,3 @@
-# README
+## Blog para implementar CanCanCan en E20
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Descarga este repositorio y comienza a trabajar siguiendo los videos correspondientes a la Experiencia 20.
